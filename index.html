@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Zynah 💗</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: radial-gradient(circle at top, #140016, #050006);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Comic Sans MS', cursive;
+  overflow: hidden;
+  color: #e9d5ff;
+  text-align: center;
+}
+
+/* floating background particles */
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(160, 80, 255, 0.4);
+  border-radius: 50%;
+  filter: blur(1px);
+  animation: driftUp 22s linear infinite;
+}
+
+@keyframes driftUp {
+  from { transform: translateY(120vh); opacity: 0; }
+  10% { opacity: 1; }
+  to { transform: translateY(-140vh); opacity: 0; }
+}
+
+/* MAIN SCREEN */
+.container {
+  z-index: 5;
+  transition: opacity 1.6s ease;
+}
+
+h1 {
+  font-size: 3rem;
+  text-shadow: 0 0 20px #7c3aed;
+}
+
+/* buttons */
+.buttons {
+  margin-top: 30px;
+  position: relative;
+  display: inline-block;
+}
+
+button {
+  padding: 16px 36px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.6s ease, box-shadow 0.6s ease;
+}
+
+/* YES */
+#yes {
+  background: linear-gradient(135deg, #6d28d9, #831843);
+  color: white;
+  box-shadow: 0 0 25px rgba(124,58,237,0.7);
+  animation: heartbeat 1.6s infinite;
+}
+
+@keyframes heartbeat {
+  0%,100% { transform: scale(1); }
+  30% { transform: scale(1.12); }
+  60% { transform: scale(1); }
+}
+
+/* NO */
+#no {
+  background: #0a000d;
+  color: #f472b6;
+  position: absolute;
+  left: 140px;
+  transition: transform 0.8s ease;
+}
+
+/* convincing text */
+#message {
+  margin-top: 30px;
+  font-size: 1.4rem;
+  color: #f9a8d4;
+  min-height: 2em;
+}
+
+/* hearts always */
+.pop-heart {
+  position: absolute;
+  font-size: 18px;
+  animation: heartFloat 7s ease-in forwards;
+  pointer-events: none;
+}
+
+@keyframes heartFloat {
+  from { transform: translateY(0) scale(0.6); opacity: 0; }
+  15% { opacity: 1; }
+  to { transform: translateY(-420px) scale(1.4); opacity: 0; }
+}
+
+/* AFTER YES */
+#topText,
+#bottomText,
+.floating-img {
+  display: none;
+}
+
+/* explosion hearts */
+.explode-heart {
+  position: absolute;
+  font-size: 22px;
+  animation: explode 1.8s cubic-bezier(.22,.61,.36,1) forwards;
+  pointer-events: none;
+}
+
+@keyframes explode {
+  from { transform: translate(0,0) scale(1); opacity: 1; }
+  to { transform: translate(var(--x), var(--y)) scale(2); opacity: 0; }
+}
+
+/* images */
+.floating-img {
+  position: absolute;
+  width: 220px;
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+  transition: opacity 1.6s ease, transform 1.6s ease;
+}
+
+.show-img {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+#topText {
+  position: absolute;
+  top: 40px;
+  width: 100%;
+  font-size: 3rem;
+  text-shadow: 0 0 25px #ec4899;
+}
+
+#bottomText {
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+  font-size: 1.4rem;
+  line-height: 1.7;
+}
+</style>
+</head>
+
+<body>
+
+<div id="topText">YAYAYAYA 😍💗
+You're the bestest girlfriend ever <3</div>
+
+<div class="container" id="preScreen">
+  <h1>Will you be my Valentine? 😝</h1>
+
+  <div class="buttons">
+    <button id="yes">YES 💘</button>
+    <button id="no">NO 😭</button>
+  </div>
+
+  <!-- ONLY changing convincing text -->
+  <div id="message"></div>
+</div>
+
+<div id="bottomText">
+  Zynah, you genuinely are my love and my happiness.<br>
+  I promise to take care of you, protect you,<br>
+  and I love you soosooo much💌.<br>
+  You are the best thing thats happened to me in the last year.<br>
+  I really hope we get married some day. I think of you day and night and you are the reason I want to be the best version of myself. <br>
+  I want to provide you with everything I can because you deserve every single good thing in this world. You're the cutest and prettiest girl I will ever lay my eyes on.<br>
+  Thank you for everything baby and thank you for trying to understand me. I love you from the bottom of my heart and I will always be there for you. I love you zynah.<br>
+  I just made this aise hi ahahah dont think much of it, boards khatam hone do fir Ill get you much much more stuff babyyyy. <br>
+  I LOVE YOU ZYNAH YOURE THE BEST GIRLFRIEND I COULD HAVE ASKED FOR. (Future wife 😍💕) <br>
+  Thank you for always being their for me and for always putting efforts. <br>
+  I love how you tell me about whatever makes you uncomfortable or feel bad.
+  I just love everything about you and especially spending time with you my love. Mwah baby I love youuuuuuuuuuuuuuuuuuuuuuuu<br>
+</div>
+
+<audio id="song" src="my_kind_of_woman.mp3" preload="auto"></audio>
+
+<img src="img1.jpg" class="floating-img" id="img1">
+<img src="img2.jpg" class="floating-img" id="img2">
+
+<script>
+/* background particles */
+for (let i = 0; i < 45; i++) {
+  const p = document.createElement("div");
+  p.className = "particle";
+  p.style.left = Math.random() * 100 + "vw";
+  p.style.animationDelay = Math.random() * 22 + "s";
+  document.body.appendChild(p);
+}
+
+/* floating hearts */
+setInterval(() => {
+  const h = document.createElement("div");
+  h.className = "pop-heart";
+  h.innerText = "💖";
+  h.style.left = Math.random() * window.innerWidth + "px";
+  h.style.top = window.innerHeight + "px";
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 7000);
+}, 380);
+
+const noBtn = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
+const msg = document.getElementById("message");
+const pre = document.getElementById("preScreen");
+
+const lines = [
+  "Zynahhhh :( PLEASEEE 🥺",
+  "ONLY for you, PLEASE 💘",
+  "You mean everything to me",
+  "js click yes ong😭",
+  "is this ragebait? 💔"
+];
+
+let index = 0;
+let yesScale = 1;
+
+/* NO hover */
+noBtn.addEventListener("mouseover", () => {
+  const x = (Math.random() - 0.5) * 600;
+  const y = (Math.random() - 0.5) * 350;
+  noBtn.style.transform = `translate(${x}px, ${y}px)`;
+
+  msg.innerText = lines[index++ % lines.length];
+
+  yesScale += 0.08;
+  yesBtn.style.transform = `scale(${yesScale})`;
+});
+
+/* YES click */
+yesBtn.addEventListener("click", () => {
+  pre.style.opacity = 0;
+  setTimeout(() => pre.remove(), 1600);
+
+  document.getElementById("topText").style.display = "block";
+  document.getElementById("bottomText").style.display = "block";
+
+  const song = document.getElementById("song");
+  song.addEventListener("loadedmetadata", () => {
+    song.currentTime = 44;
+    song.play();
+  }, { once: true });
+  song.load();
+
+  const r = yesBtn.getBoundingClientRect();
+  for (let i = 0; i < 80; i++) {
+    const e = document.createElement("div");
+    e.className = "explode-heart";
+    e.innerText = "💖";
+    const a = Math.random() * Math.PI * 2;
+    const d = Math.random() * 360 + 60;
+    e.style.left = r.left + r.width / 2 + "px";
+    e.style.top = r.top + r.height / 2 + "px";
+    e.style.setProperty("--x", Math.cos(a) * d + "px");
+    e.style.setProperty("--y", Math.sin(a) * d + "px");
+    document.body.appendChild(e);
+    setTimeout(() => e.remove(), 1800);
+  }
+
+  const img1 = document.getElementById("img1");
+  const img2 = document.getElementById("img2");
+
+  img1.style.display = img2.style.display = "block";
+  img1.style.left = "10%";
+  img1.style.top = "35%";
+  img2.style.right = "10%";
+  img2.style.bottom = "40%";
+
+  setTimeout(() => img1.classList.add("show-img"), 700);
+  setTimeout(() => img2.classList.add("show-img"), 1100);
+});
+</script>
+
+</body>
+</html>
+
+
+
+
+
