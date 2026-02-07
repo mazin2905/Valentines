@@ -196,7 +196,6 @@ You're the bestest girlfriend ever <3</div>
 <audio id="song" src="my_kind_of_woman.mp3" preload="auto"></audio>
 
 <img src="img1.jpg" class="floating-img" id="img1">
-<img src="img2.jpg" class="floating-img" id="img2">
 
 <script>
 /* background particles */
@@ -278,21 +277,19 @@ yesBtn.addEventListener("click", () => {
   }
 
   const img1 = document.getElementById("img1");
-  const img2 = document.getElementById("img2");
 
-  img1.style.display = img2.style.display = "block";
+  img1.style.display =  "block";
   img1.style.left = "10%";
-  img1.style.top = "35%";
-  img2.style.right = "10%";
-  img2.style.bottom = "40%";
+  img1.style.top = "50%";
 
   setTimeout(() => img1.classList.add("show-img"), 700);
-  setTimeout(() => img2.classList.add("show-img"), 1100);
+   
 });
 </script>
 
 </body>
 </html>
+
 
 
 
